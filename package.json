@@ -5,15 +5,17 @@
   "type": "module",
   "scripts": {
     "build": "next build",
+    "commitlint": "pnpm exec commitlint --edit .git/COMMIT_EDITMSG",
     "dev": "next dev --turbopack",
     "lint": "next lint",
-    "prepare": "husky install",
     "lint:fix": "eslint --max-warnings=0 . --fix --no-warn-ignored",
+    "prepare": "husky install",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --check . --write",
+    "semantic-release": "semantic-release",
     "start": "next start",
-    "commitlint": "pnpm exec commitlint --edit .git/COMMIT_EDITMSG",
-    "test": "vitest run --coverage"
+    "test": "vitest run --coverage",
+    "typecheck": "tsc"
   },
   "lint-staged": {
     "*": ["pnpm run prettier:fix"],
