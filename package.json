@@ -7,11 +7,17 @@
     "build": "next build",
     "dev": "next dev --turbopack",
     "lint": "next lint",
+    "prepare": "husky install",
     "lint:fix": "eslint --max-warnings=0 . --fix --no-warn-ignored",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --check . --write",
     "start": "next start",
+    "commitlint": "pnpm exec commitlint --edit .git/COMMIT_EDITMSG",
     "test": "vitest run --coverage"
+  },
+  "lint-staged": {
+    "*": ["pnpm run prettier:fix"],
+    "**/*.{ts,tsx}": ["pnpm run lint:fix", "pnpm run lint"]
   },
   "dependencies": {
     "next": "15.2.3",
@@ -30,6 +36,8 @@
     "commitlint": "^19.8.0",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
     "prettier": "^3.5.3",
     "semantic-release": "^24.2.3",
     "tailwindcss": "^4",
