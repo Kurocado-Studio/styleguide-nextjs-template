@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI/CD Pull Request Pipeline
 
 permissions:
   contents: write
@@ -6,10 +6,6 @@ permissions:
 
 on:
   pull_request:
-  push:
-    branches:
-      - main
-      - dev
 
 jobs:
   lint:
@@ -22,12 +18,3 @@ jobs:
     uses: kurocado-studio/dev-ops/.github/workflows/workflow.test.yml@main
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  release:
-    needs: test
-    uses: kurocado-studio/dev-ops/.github/workflows/workflow.release.yml@main
-    secrets:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    with:
-      branch_name: ${{ github.ref_name }}
